@@ -1,0 +1,22 @@
+{
+  "id": "usm-rl-sharpening",
+  "name": "USM and RL Sharpening",
+  "version": "1.0.0",
+  "description": "Sharpening on L*: an unsharp mask with a threshold, edges-only and halo control, or Richardson-Lucy deconvolution with damping and iterations, mixed in by a contrast mask that keeps flat areas and noise out, with an optional blur of the flattest areas.",
+  "author": "Anthony Reimche",
+  "main": "dist/index.js",
+  "license": "GPL-3.0-or-later",
+  "categories": [
+    "Develop"
+  ],
+  "keywords": [
+    "sharpening",
+    "unsharp mask",
+    "deconvolution",
+    "richardson-lucy",
+    "halo control",
+    "detail"
+  ],
+  "repository": "anthonyreimche/USM-and-RL-Sharpening",
+  "minAppVersion": "3.2.2"
+}
