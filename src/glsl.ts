@@ -320,6 +320,9 @@ float shBilWeight(ivec2 row, int adx) {
 }
 
 export const PASS_HELPERS = `
+// Every int below is highp: the programs' ints are mediump, 16 bits on a driver
+// that honours it (Mesa), and the packed bilateral weights take 18.
+precision highp int;
 ${LUMINANCE_GLSL}
 const int SH_K_SKIP = ${K_SKIP};
 const int SH_K_3X3 = ${K_3X3};

@@ -1105,6 +1105,9 @@ float shBilWeight(ivec2 row, int adx) {
 }`;
 }
 var Te = `
+// Every int below is highp: the programs' ints are mediump, 16 bits on a driver
+// that honours it (Mesa), and the packed bilateral weights take 18.
+precision highp int;
 ${ge}
 const int SH_K_SKIP = ${L};
 const int SH_K_3X3 = ${R};

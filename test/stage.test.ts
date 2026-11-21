@@ -2,7 +2,7 @@
 // can't run GLSL; the GPU spec (test/gpu) renders it.
 
 import { describe, expect, it } from "vitest";
-import { FILTER_CALLS, INLINE_GLSL, PASS_GLSL, PASS_HELPERS, REGION_GLSL, STEP_CALLS, STEP_FILTER, glslLiteral } from "../src/glsl";
+import { FILTER_CALLS, INLINE_GLSL, INLINE_HELPERS, PASS_GLSL, PASS_HELPERS, REGION_GLSL, STEP_CALLS, STEP_FILTER, glslLiteral } from "../src/glsl";
 import { DEFAULT_PARAMS, MAX_DRAWS, MAX_IIR_RADIUS } from "../src/model";
 import { DRAWS_KEY, EDIT_KEYS, LABELS, STAGE_ID, bagValue } from "../src/params";
 import { PRIORITY, sharpeningStage } from "../src/stage";
@@ -156,6 +156,14 @@ describe("a draw's cost", () => {
     for (const name of ["step", "smooth", "filter", "active", "input", "output", "sample", ...EDIT_KEYS, "draws"]) {
       expect(src).not.toMatch(new RegExp(`\\b(int|float|bool|vec2|vec4|ivec2)\\s+${name}\\b`));
     }
+  });
+
+  // The programs' ints are mediump unless declared highp: 16 bits where the
+  // driver honours precision (Mesa), which drops the top of the 18-bit packed
+  // bilateral weights. Unit tests can't run GLSL, so guard the declaration.
+  it("makes the pass helpers' ints highp, and only the pass helpers'", () => {
+    expect(PASS_HELPERS.replace(/\/\/.*/g, "").trimStart()).toMatch(/^precision highp int;/);
+    for (const src of [INLINE_GLSL, INLINE_HELPERS, PASS_GLSL, REGION_GLSL]) expect(src).not.toMatch(/precision\s+highp\s+int/);
   });
 
   it("writes float literals GLSL ES accepts", () => {
