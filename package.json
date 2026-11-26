@@ -1,7 +1,7 @@
 {
   "name": "safelight-usm-rl-sharpening",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "USM and RL Sharpening extension for Safelight: unsharp mask and Richardson-Lucy deconvolution on L*.",
   "type": "module",
   "scripts": {

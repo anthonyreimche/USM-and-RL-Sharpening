@@ -35,6 +35,7 @@ export function activate(host: SafelightAPI): void {
     title: TITLE,
     component: SharpeningPanel,
     defaultDock: { module: "develop", direction: "right", width: 280 },
+    modules: ["develop"],
     onReset: reset,
     mask: { component: SharpeningPanel, owns: [...EDIT_KEYS.map(qualified), qualified(DRAWS_KEY)] },
   });

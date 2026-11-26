@@ -1705,6 +1705,7 @@ function Ne(e) {
 			direction: "right",
 			width: 280
 		},
+		modules: ["develop"],
 		onReset: Me,
 		mask: {
 			component: O,
